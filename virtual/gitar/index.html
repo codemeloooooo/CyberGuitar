@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=1,initial-scale=1.0,minimum-scale=1.0" />
+<base href="/" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Virtual guitar for music teachers and students. Visualize notes, intervals, chords, and scales, and play the guitar using your computer keyboard." />
+<title>Virtual guitar – Play guitar online</title>
+<script src="/cdn-cgi/apps/head/v1daaeNEqnhqF0Wut8fA25XDLs0.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--[if lt IE 9]><script src="/virtual/media/system/js/polyfill.event.js"></script><![endif]-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="/virtual/scripts/guitar/css/app.min.css" rel="preload" as="style">
+<link href="/virtual/scripts/guitar/js/app.min.js" rel="preload" as="script">
+<link href="/virtual/scripts/guitar/js/vendors.js" rel="preload" as="script">
+<link href="/virtual/scripts/guitar/css/app.min.css" rel="stylesheet">
+<link href="../css/screen.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/icons.css">
+<script>
+jQuery(function () {
+  $( "button:eq( 0 )" ).html("<i class='i-down'></i>");
+  $( "button:eq( 1 )" ).html("<i class='i-circle'></i>");
+  $( "button:eq( 2 )" ).html("<i class='i-play'></i>");
+  $( "button:eq( 3 )" ).html("<i class='i-tuning'></i>");
+  $( "button:eq( 4 )" ).html("<i class='i-list'></i>");
+		});
+</script>
+<style>
+  #shareurl{display: none;width:100%;color:#666;text-align:center;height: 30px;border: 1px solid #999;}
+  </style>
+</head>
+<body>
+<article>
+<div itemprop="articleBody">
+<div class="default__page__content">
+<div id="classicGuitar"></div>
+<input type="text" id="shareurl" />
+<script>
+var languageSetup = {
+  classicGuitar: {
+    // URL
+    url: '/virtual/gitar',
+    pathToSoundFile: '/virtual/sound/guitar/',
+    pathServiceWorkers: '/virtual/scripts/guitar/service-worker.js',
+    buttonsNames: {
+      // Mark
+      markButton: '',
+      // Play
+      playButton: '',
+      // Reset
+      resetButton: '✖',
+      // Tuner
+      tunerButton: '',
+      // Highlight
+      highlightButton: '',
+      // Sounds
+      soundsDropDown: {
+        defaultButton: 'Sounds',
+        countryGuitarButton: 'Acoustic',
+        acousticGuitarButton: 'Classical',
+        electricGuitarButton: 'Electric'
+      }
+    },
+    noteData: {
+      c: {
+        'C': {
+          html: 'C'
+        }
+      },
+      cis: {
+        'C♯': {
+          html: 'C<span>♯</span>'
+        }
+      },
+      des: {
+        'D♭': {
+          html: 'D<span>♭</span>'
+        }
+      },
+      d: {
+        'D': {
+          html: 'D'
+        }
+      },
+      dis: {
+        'D♯': {
+          html: 'D<span>♯</span>'
+        }
+      },
+      es: {
+        'E♭': {
+          html: 'E<span>♭</span>'
+        }
+      },
+      e: {
+        'E': {
+          html: 'E'
+        }
+      },
+      f: {
+        'F': {
+          html: 'F'
+        }
+      },
+      fis: {
+        'F♯': {
+          html: 'F<span>♯</span>'
+        }
+      },
+      ges: {
+        'G♭': {
+          html: 'G<span>♭</span>'
+        }
+      },
+      g: {
+        'G': {
+          html: 'G'
+        }
+      },
+      gis: {
+        'G♯': {
+          html: 'G<span>♯</span>'
+        }
+      },
+      as: {
+        'A♭': {
+          html: 'A<span>♭</span>'
+        }
+      },
+      a: {
+        'A': {
+          html: 'A'
+        }
+      },
+      ais: {
+        'A♯': {
+          html: 'A<span>♯</span>'
+        }
+      },
+      b: {
+        'B♭': {
+          html: 'B<span>♭</span>'
+        }
+      },
+      h: {
+        'B': {
+          html: 'B'
+        }
+      }
+    },
+    keys: {
+      keyPressShiftHandle: {
+        // 49: 'f1',
+        // 50: 'f2',
+        // 51: 'f3',
+        // 52: 'f4',
+        // 53: 'f5',
+        // 54: 'f6',
+        // 55: 'f7',
+        // 56: 'f8',
+        // 57: 'f9',
+        // 48: 'f10',
+        // 189: 'f11',
+        // 187: 'f12',
+        // 'Digit1':'f1',
+        // 'Digit2':'f2',
+        // 'Digit3':'f3',
+        // 'Digit4':'f4',
+        // 'Digit5':'f5',
+        // 'Digit6':'f6',
+        // 'Digit7':'f7',
+        // 'Digit8':'f8',
+        // 'Digit9':'f9',
+        // 'Digit0':'f10',
+        // 'Minus': 'f11',
+        // 'Equal': 'f12',
+        // // 2 string
+        // 81: 'h1',
+        // 87: 'h2',
+        // 69: 'h3',
+        // 82: 'h4',
+        // 84: 'h5',
+        // 89: 'h6',
+        // 85: 'h7',
+        // 73: 'h8',
+        // 79: 'h9',
+        // 80: 'h10',
+        // 219: 'h11',
+        // 221: 'h12'
+
+        // 6 string
+        90: 'e1',
+        88: 'e2',
+        67: 'e3',
+        86: 'e4',
+        66: 'e5',
+        78: 'e6',
+        77: 'e7',
+        188: 'e8',
+        190: 'e9',
+        191: 'e10'
+      },
+      keyPressHandle: {
+        // 1 string f12345678901112
+        112:'f1',
+        113:'f2',
+        114:'f3',
+        115:'f4',
+        116:'f5',
+        117:'f6',
+        118:'f7',
+        119:'f8',
+        120:'f9',
+        121:'f10',
+        122: 'f11',
+        123: 'f12',
+
+        // 2 string 1234567890-=backspaceins
+        49: 'h1',
+        50: 'h2',
+        51: 'h3',
+        52: 'h4',
+        53: 'h5',
+        54: 'h6',
+        55: 'h7',
+        56: 'h8',
+        57: 'h9',
+        48: 'h10',
+        189: 'h11',
+        187: 'h12',
+        8:'h13',
+        45:'h14',
+
+        // 3 string qwertyuiop[]\del
+        81: 'g1',
+        87: 'g2',
+        69: 'g3',
+        82: 'g4',
+        84: 'g5',
+        89: 'g6',
+        85: 'g7',
+        73: 'g8',
+        79: 'g9',
+        80: 'g10',
+        219: 'g11',
+        221: 'g12',
+        220:'g13',
+        46:'g14',
+
+        // 4 string asdfghjkl;'enter
+        65: 'd1',
+        83: 'd2',
+        68: 'd3',
+        70: 'd4',
+        71: 'd5',
+        72: 'd6',
+        74: 'd7',
+        75: 'd8',
+        76: 'd9',
+        186: 'd10',
+        222: 'd11',
+        13: 'd12',
+
+        // 5 string zxcvbnm,./←↓→↑
+        90: 'a1',
+        88: 'a2',
+        67: 'a3',
+        86: 'a4',
+        66: 'a5',
+        78: 'a6',
+        77: 'a7',
+        188: 'a8',
+        190: 'a9',
+        191: 'a10',
+        37:'a11',
+        40:'a12',
+        39:'a13',
+        38:'a14',
+      }
+    }
+  }
+}
+</script>
+<script src="/virtual/scripts/guitar/js/vendors.js"></script>
+<script src="/virtual/scripts/guitar/js/app.min.js"></script>
+</article>
+<style>.alert-b{ text-align: center; font-size: 14px; margin: auto; border-radius: 10px; padding: 10px; color: #999 } .alert { display: none; }</style>
+<script>
+  document.getElementById("shareurl").onclick = function () {
+    this.select();
+    document.execCommand('copy');
+    myAlertBottom()
+  }
+  function myAlertBottom() {
+    $(".alert-b").show();
+    setTimeout(function () {
+      $(".alert-b").hide();
+    }, 2000);
+  }
+</script>
+<div class="alert-b alert">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+Url copied to clipboard.
+</div>
+<div id="bottom">
+<a title="Online virtual guitar" href="https://chordoke.com/virtual/guitar" target="_top"><i class="fa-guitar active"></i></a>
+<a title="Online virtual bass " href="https://chordoke.com/virtual/bass" target="_top"><i class="fa-bass"></i></a>
+<a title="Online virtual " href="https://chordoke.com/virtual/piano" target="_top"><i class="fa-piano"></i></a>
+</div>
+</body>
+</html>
